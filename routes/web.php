@@ -15,15 +15,18 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-
 $router->group(['prefix' => 'user'], function () use ($router) {
-    // $router->get('/', 'UserController@index');
-    // $router->get('/{id}', 'UserController@show');
-    $router->post('/', 'UserController@store');
-    // $router->put('/{id}', 'UserController@update');
-    // $router->delete('/{id}', 'UserController@destroy');
+    $router->get('/', 'UserController@getUser');
+    $router->get('/{id}', 'UserController@getUserId');
+    $router->post('/', 'UserController@create');
+    $router->put('/{id}', 'UserController@update');
+    $router->delete('/{id}', 'UserController@destroy');
 });
 
+$router->group(['prefix' => 'wallet'], function () use ($router) {
+    $router->get('/{idUser}', 'WalletsController@getWallet');
+    $router->post('/', 'WalletsController@add');
+});
 
 
  

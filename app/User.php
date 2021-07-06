@@ -29,4 +29,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public function wallet()
+    {
+      return $this->hasMany('App\Wallets','id_user','id');
+    }
 }

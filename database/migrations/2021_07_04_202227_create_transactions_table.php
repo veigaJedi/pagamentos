@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_wallet');
             $table->decimal('value', 24,2)->default(0);
-            $table->date('dt_transatcion')->nullable();
+            $table->date('dt_transaction')->nullable();
             $table->string('status');
             $table->timestamps();
         });

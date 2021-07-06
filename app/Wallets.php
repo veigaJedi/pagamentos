@@ -20,4 +20,9 @@ class Wallets extends Model implements AuthenticatableContract, AuthorizableCont
     protected $fillable = [
         'id_user', 'balance', 'status'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User','id_user','id');
+    }
 }

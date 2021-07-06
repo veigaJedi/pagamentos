@@ -17,14 +17,14 @@ class CreateTransactionsUsersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_transaction');
             $table->unsignedBigInteger('id_user_payer');
-            $table->unsignedBigInteger('id_user_receiver');
+            $table->unsignedBigInteger('id_user_payee')->nullable();
             $table->timestamps();
         });
         
         Schema::table('transactions_users', function($table) {
             $table->foreign('id_transaction')->references('id')->on('transactions')->onDelete('cascade');
             $table->foreign('id_user_payer')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_user_receiver')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_user_payee')->references('id')->on('users')->onDelete('cascade');
         });        
     }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Wallets;
+use App\Transactions;
 
 class TransactionController extends Controller
 {
@@ -13,23 +13,4 @@ class TransactionController extends Controller
       
     }
 
-    /**
-    * Adicionar carteira do usuario.
-    *
-    * $request
-    */
-    public function store($id_user)
-    {
-
-      $wallets = new Wallets();
-
-      $wallets->id_user  = $id_user;
-      $wallets->balance  = '0.00';
-      $wallets->status  = 'active';
-      $wallets->save();
-      
-      return response()->json([
-        'message' => 'Ok',
-      ], 201);
-    }
 }

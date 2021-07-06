@@ -18,6 +18,6 @@ class TransactionsUsers extends Model implements AuthenticatableContract, Author
      * @var array
      */
     protected $fillable = [
-        'id_transaction', 'id_user_payer', 'id_user_receiver'
+        'id_transaction', 'id_user_payer', 'id_user_payee'
     ];
 }

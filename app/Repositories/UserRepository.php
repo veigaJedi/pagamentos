@@ -6,7 +6,32 @@ use App\Interfaces\UserInterface;
 use App\User;
 
 class UserRepository implements UserInterface {
-    
+
+    /**
+    * Listagem de usuarios.
+    *
+    */
+    public function getUser() {
+      $result = User::orderBy('created_at', 'desc')->paginate(10);
+      return response()->json($result,201);
+    }
+  
+    /**
+    * Listagem de usuario por id.
+    * 
+    * $id
+    */
+    public function getUserId($id) {
+      $result = User::findOrFail($id);
+      if($result){
+        return response()->json($result,201);
+      }else{
+        return response()->json([
+          'message' => 'Usuario a'
+        ], 201);
+      }
+    }
+
     /**
     * Injeção de dependencias e regras de negocio de cadastro de usuario.
     *
@@ -51,8 +76,41 @@ class UserRepository implements UserInterface {
 
             return response()->json([
                 'message' => 'Usuario cadastrado com sucesso'
-              ], 201);
+            ], 201);
           }
+    }
+
+    /**
+    * Atualização de usuario.
+    * 
+    * $params, $id
+    */
+    public function update($params, $id) {
+      $result = User::findOrFail($id);
+      $result->name = $params->name;
+      $result->save();
+      
+      if($result){
+        return response()->json([
+          'message' => 'Usuario atualizado com sucesso!',
+        ], 201); 
+      }
+    }
+
+    /**
+    * Excluir usuario.
+    * 
+    * $id
+    */
+    public function destroy($id) {
+      $result = User::findOrFail($id);
+      $result->delete();
+      
+      if($result){
+        return response()->json([
+          'message' => 'Usuario excluido com sucesso!',
+        ], 201); 
+      }
     }
 
     /**

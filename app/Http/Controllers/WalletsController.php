@@ -34,6 +34,34 @@ class WalletsController extends Controller
       $result = $this->wallet->create($params);
       
       return $result;
-
     }
+
+    /**
+    * Adicionar saldo na carteira.
+    *
+    * $request
+    */
+    public function add(Request $request)
+    {
+
+      $params = new \stdClass();
+
+      $params->id_user  = $request->id_user;
+      $params->value  = $request->value;
+
+      $result = $this->wallet->add($params);
+      
+      return $result;
+    } 
+    
+    /**
+    * Ver Carteira por usuario
+    *
+    * $request
+    */
+    public function getWallet($idUser)
+    {
+      $result = $this->wallet->getWallet($idUser); 
+      return $result;
+    }     
 }

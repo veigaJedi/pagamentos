@@ -91,6 +91,8 @@ $app->configure('app');
 */
 
 $app->register(App\Providers\AppServiceProvider::class, $app->bind('App\Interfaces\UserInterface','App\Repositories\UserRepository'));
+$app->register(App\Providers\AppServiceProvider::class, $app->bind('App\Interfaces\WalletInterface','App\Repositories\WalletRepository'));
+$app->register(App\Providers\AppServiceProvider::class, $app->bind('App\Interfaces\TransactionInterface','App\Repositories\TransactionRepository'));
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
