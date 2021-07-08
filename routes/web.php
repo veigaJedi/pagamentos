@@ -28,6 +28,11 @@ $router->group(['prefix' => 'wallet'], function () use ($router) {
     $router->post('/', 'WalletsController@add');
 });
 
+$router->group(['prefix' => 'transactions'], function () use ($router) {
+   // $router->get('/{idUser}', 'TransactionsController@transactions');
+    $router->post('/', 'TransactionController@create');
+});
+
 
  
 
